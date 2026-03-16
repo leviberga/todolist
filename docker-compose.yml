@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_local_todolist
+    environment:
+      POSTGRES_DB: database_todolist
+      POSTGRES_USER: user_dev
+      POSTGRES_PASSWORD: password_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - todo_list_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  todo_list_postgres_data:
