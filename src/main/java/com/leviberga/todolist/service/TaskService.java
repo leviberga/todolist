@@ -2,6 +2,7 @@ package com.leviberga.todolist.service;
 
 import com.leviberga.todolist.dto.TaskRequestDTO;
 import com.leviberga.todolist.dto.TaskResponseDTO;
+import com.leviberga.todolist.exception.TaskNotFoundException;
 import com.leviberga.todolist.mapper.TaskMapper;
 import com.leviberga.todolist.model.Tasks;
 import com.leviberga.todolist.repository.TaskRepository;
@@ -32,19 +33,19 @@ public class TaskService {
     }
     public TaskResponseDTO getTaskById(UUID task_id){
          Tasks task = taskRepository.findById(task_id)
-                .orElseThrow(() -> new RuntimeException("Task not found with the following ID: " + task_id));
+                .orElseThrow(() -> new TaskNotFoundException("Task not found with the following ID: " + task_id));
          return taskMapper.toResponseDTO(task);
     }
     public TaskResponseDTO updateTask(TaskRequestDTO taskRequestDTO, UUID task_id){
         Tasks task = taskRepository.findById(task_id)
-                .orElseThrow(() -> new RuntimeException("Task not found with the following ID: " + task_id));
+                .orElseThrow(() -> new TaskNotFoundException("Task not found with the following ID: " + task_id));
         taskMapper.updateEntity(taskRequestDTO, task);
         Tasks savedTask = taskRepository.save(task);
         return taskMapper.toResponseDTO(savedTask);
     }
     public void deleteTask(UUID task_id){
         Tasks task = taskRepository.findById(task_id)
-                .orElseThrow(() -> new RuntimeException("Task not found with the following ID: " + task_id));
+                .orElseThrow(() -> new TaskNotFoundException("Task not found with the following ID: " + task_id));
         taskRepository.delete(task);
     }
 }
