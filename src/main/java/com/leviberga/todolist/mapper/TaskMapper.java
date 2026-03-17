@@ -24,4 +24,20 @@ public class TaskMapper {
         response.setPriority(task.getPriority());
         return response;
     }
+    public void updateEntity(TaskRequestDTO dto, Tasks task) {
+        if (dto == null) return;
+
+        if (dto.getName() != null) {
+            task.setName(dto.getName());
+        }
+        if (dto.getDescription() != null) {
+            task.setDescription(dto.getDescription());
+        }
+        if (dto.getIsDone() != null) {
+            task.setIsDone(dto.getIsDone());
+        }
+        if (dto.getPriority() != null) {
+            task.setPriority(dto.getPriority());
+        }
+    }
 }
