@@ -30,7 +30,7 @@ Sistema de gerenciamento de tarefas desenvolvido com **Java 21** e **Spring Boot
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/todolist.git
+git clone https://github.com/leviberga/todolist.git
 cd todolist
 ```
 
